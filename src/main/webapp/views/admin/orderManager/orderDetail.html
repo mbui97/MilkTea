@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+	
+<head>
+    <title>Order Detail</title>
+
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+
+<div layout:fragment="pageTitle">
+    <h1>Order Detail</h1>
+    <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/admin/orders}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+				<!-- Alert -->
+               	<div th:if="${msg != null}" class="alert alert-dismissible "
+					th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong><span th:text="${msg}"></span></strong>
+				</div>
+				<!-- end Alert -->
+				
+				<!-- <div class="panel panel-info" th:if="${msg == null}"> -->
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Order Detail</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-9 col-lg-9 ">
+								<table class="table table-order-information">
+									<tbody>
+										<tr>
+											<td>User Email</td>
+											<td th:text="${order.user.email}" />
+										</tr>
+										<tr>
+											<td>User Name</td>
+											<td th:text="${order.user.fullName}" /></td>
+										</tr>
+										<tr>
+											<td>Order Date</td>
+											<td th:text="${order.createOrderDate}" />
+										</tr>
+										<tr>
+											<td>Receiver Name</td>
+											<td th:text="${order.customerName}" />
+										</tr>
+										<tr>
+											<td>Receiver Phone</td>
+											<td th:text="${order.customerPhone}" />
+										</tr>
+										<tr>
+											<td>Receiver Address</td>
+											<td th:text="${order.customerAddress}" />
+										</tr>
+										<tr>
+											<td>Note</td>
+											<td th:text="${order.note}" />
+										</tr>
+										<tr>
+											<td>Total Amount</td>
+											<td th:text="${order.total}" />
+										</tr>
+										<tr>
+											<td>Status</td>
+											<td th:text="${order.getStatusString()}" />
+										</tr>
+										<tr>
+											<td>Deleted ?</td>
+											<td th:text="${order.getDeletedString()}" />
+										</tr>
+									</tbody>
+								</table>							
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer" style="height: 50px; !important" >
+						<span class="pull-right">
+							<a href="#" th:href="@{'/admin/orders/' + ${order.id} + '/edit'}"
+								data-original-title="Edit this order" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-warning"><i
+									class="glyphicon glyphicon-edit"></i></a>
+							<a href="#" th:href="@{'/admin/orders/' + ${order.id} + '/delete'}"
+								data-original-title="Remove this order" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-danger"
+								onclick="return confirm('Sure delete??')"><i
+								class="glyphicon glyphicon-remove"></i></a>
+						</span>
+					</div>
+				</div>
+				
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Order Items</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-9 col-lg-9 ">
+								<table class="table table-bordered table-hover display">
+									<thead>
+
+			                            <tr>
+			                                <th>No</th>
+			                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Product</th>
+			                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Unit Price</th>
+			                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Quantity</th>
+			                            </tr>
+			                            </thead>
+									<tbody>
+										<tr th:each="orderItem,iter : ${order.orderItems}">
+											<td th:text="${iter.count}">1</td>
+											<td th:text="${orderItem.product.name}"></td>
+											<td th:text="${orderItem.product.unitPrice}"></td>
+											<td th:text="${orderItem.quantity}"></td>
+										</tr>
+										
+									</tbody>
+								</table>							
+							</div>
+						</div>
+					</div>
+					
+					<!-- <div class="panel-footer" style="height: 50px; !important" >
+						<span class="pull-right">
+							<a href="#" th:href="@{'/admin/orders/' + ${order.id} + '/edit'}"
+								data-original-title="Edit this order" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-warning"><i
+									class="glyphicon glyphicon-edit"></i></a>
+							<a href="#" th:href="@{'/admin/orders/' + ${order.id} + '/delete'}"
+								data-original-title="Remove this order" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-danger"
+								onclick="return confirm('Sure delete??')"><i
+								class="glyphicon glyphicon-remove"></i></a>
+						</span>
+					</div> -->
+				</div>
+				
+				<span class="col-sm-2 pull-right">
+					<a href="#" th:href="@{/admin/orders/}"
+					data-original-title="Show orders list" data-toggle="tooltip"
+					type="button" class="btn btn-primary">
+					<i class="glyphicon glyphicon-th-list"></i>
+					</a>
+				</span>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

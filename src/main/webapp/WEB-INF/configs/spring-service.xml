@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="ProductService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.ProductServiceImpl">
+				<property name="productDAO" ref="ProductDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="UserService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.UserServiceImpl">
+				<property name="userDAO" ref="UserDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="CategoryService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.CategoryServiceImpl">
+				<property name="categoryDAO" ref="CategoryDAO" />
+				<property name="productDAO" ref="ProductDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="OrderService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.OrderServiceImpl">
+				<property name="orderDAO" ref="OrderDAO" />
+				<property name="orderItemDAO" ref="OrderItemDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="OrderItemService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.OrderItemServiceImpl">
+				<property name="orderItemDAO" ref="OrderItemDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="MyUserDetailsService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.tmh.service.impl.MyUserDetailsServiceImpl">
+				<property name="userDAO" ref="UserDAO" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

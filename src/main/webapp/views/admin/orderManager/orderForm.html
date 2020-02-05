@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+<head>
+    <title>Order Form</title>
+	
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="pageTitle">
+    <h1> Edit Order</h1>
+    <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/admin/orders}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+	<div class="container" style="margin: 0 auto;">
+	
+		<!-- Alert -->
+               	<div th:if="${msg != null}" class="alert alert-dismissible "
+					th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong><span th:text="${msg}"></span></strong>
+				</div>
+		<!-- end Alert -->
+		
+		<div class="col-md-6"  style="margin: 0 auto;">
+
+			<form action="#" th:action="@{/admin/orders}" class="form-horizontal" method="post" 
+				th:object="${order}">
+				<input type="hidden" th:field="*{id}" />
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{user.email}" class="form-control" placeholder="Email"
+							th:readonly="true" />
+						<div th:errors="*{user.email}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">User Name</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{user.fullName}" class="form-control" placeholder="Name"
+							th:readonly="true" />
+						<div th:errors="*{user.fullName}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Order Date</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{createOrderDate}" class="form-control" placeholder="Order Date" />
+						<div th:errors="*{createOrderDate}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Receiver Name</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{customerName}" class="form-control" placeholder="Receiver Name" />
+						<div th:errors="*{customerName}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Receiver Phone</label>
+					<div class="col-sm-10">
+						<input type="number" th:field="*{customerPhone}" class="form-control" placeholder="Receiver Phone" />
+						<div th:errors="*{customerPhone}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Receiver Address</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{customerAddress}" class="form-control" placeholder="Receiver Address" />
+						<div th:errors="*{customerAddress}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Note</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{note}" class="form-control" placeholder="Note" />
+						<div th:errors="*{note}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Total Amount</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{total}" class="form-control" placeholder="Total Amount" />
+						<div th:errors="*{total}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+				  	<label class="col-sm-2 control-label">Status</label>
+				 	 <div class="col-sm-10">
+				  		<select class="form-control" th:field="*{status}" id="sel1">
+				  			<option value="0">PENDING</option>	
+				  			<option value="1">APPROVED</option>		   
+				  			<option value="2">SHIPPING</option>
+				  			<option value="3">DONE</option>
+				  		</select>
+				  	</div>
+				  	<div th:errors="*{status}" ></div>
+				</div>
+				<div class="form-group">
+				  	<label class="col-sm-2 control-label">Deleted ?</label>
+				 	 <div class="col-sm-10">
+				  		<select class="form-control" th:field="*{isDeleted}" id="sel1">
+				  			<option value="0">NOT DELETED</option>	
+				  			<option value="1">DELETED</option>		   
+				  		</select>
+				  	</div>
+				  	<div th:errors="*{isDeleted}" ></div>
+				</div>
+					
+				
+				<!-- <div class="form-group">
+					<label class="col-sm-2 control-label">Sex</label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+						<input type="radio" 
+						        th:field="*{gender}" field="0"/>Male
+						</label>
+						<label class="radio-inline">
+						<input type="radio" 
+						        th:field="*{gender}" field="1"/>Female
+						</label>
+						
+					</div>
+				</div> -->
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2">
+						<input class="btn btn-primary" type="submit" value="Submit" />
+					</div>
+					<span class="col-sm-2 pull-right">
+						<a href="#" th:href="@{/admin/orders/}"
+						data-original-title="Show orders list" data-toggle="tooltip"
+						type="button" class="btn btn-primary">
+						<i class="glyphicon glyphicon-th-list"></i>
+						</a>
+					</span>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

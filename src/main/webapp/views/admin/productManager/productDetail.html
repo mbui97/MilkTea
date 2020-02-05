@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+	
+<head>
+    <title>Product Detail</title>
+
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+
+<div layout:fragment="pageTitle">
+    <h1>User Detail</h1>
+    <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/admin/products}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad">
+				<!-- Alert -->
+               	<div th:if="${msg != null}" class="alert alert-dismissible "
+					th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong><span th:text="${msg}"></span></strong>
+				</div>
+				<!-- end Alert -->
+				
+				<!-- <div class="panel panel-info" th:if="${msg == null}"> -->
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Profile Product</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-5 col-lg-5 " align="center">
+								<img alt="User Pic"
+									id="product-img"
+									th:src="@{'/assets/admin/img/products/' + ${product.image}}">
+							</div>
+							<div class=" col-md-7 col-lg-7 ">
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td>Name</td>
+											<td th:text="${product.name}" />
+										</tr>
+										<tr>
+											<td>Description</td>
+											<td th:text="${product.description}" /></td>
+										</tr>
+										<tr>
+											<td>Category</td>
+											<td th:text="${product.category.name}" />
+										</tr>
+										<tr>
+											<td>Image</td>
+											<!-- <td><textarea rows = "2" cols = "38	" th:text="${product.image}" disabled></textarea></td> -->
+											<td><span style ="word-break: break-all;" th:text="${product.image}"></span></td>
+										</tr>
+										<tr>
+											<td>Unit Price</td>
+											<td th:text="${product.unitPrice}" />
+										</tr>								
+										<!-- <tr>
+											<td>Gender</td>
+											<td th:switch="${student.gender}">
+											    <span th:case="1" th:text="Female" /> 
+											    <span th:case="0" th:text="Male" />
+											    <span th:case="*" th:text="N/A" />
+											</td>
+										</tr> -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer" style="height: 50px; !important" >
+						<span class="pull-right">
+							<a href="#" th:href="@{'/admin/products/' + ${product.id} + '/edit'}"
+								data-original-title="Edit this product" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-warning"><i
+									class="glyphicon glyphicon-edit"></i></a>
+							<a href="#" th:href="@{'/admin/products/' + ${product.id} + '/delete'}"
+								data-original-title="Remove this user" data-toggle="tooltip"
+								type="button" class="btn btn-sm btn-danger"
+								onclick="return confirm('Sure delete??')"><i
+								class="glyphicon glyphicon-remove"></i></a>
+						</span>
+					</div>
+	
+				</div>
+				
+				<span class="col-sm-2 pull-right">
+					<a href="#" th:href="@{/admin/products/}"
+					data-original-title="Show products list" data-toggle="tooltip"
+					type="button" class="btn btn-primary">
+					<i class="glyphicon glyphicon-th-list"></i>
+					</a>
+				</span>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

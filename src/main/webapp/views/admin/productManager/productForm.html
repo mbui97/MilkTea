@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+<head>
+    <title>Product Form</title>
+	
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+<body>
+<!-- <div layout:fragment="pageTitle">
+    <h1>product Form</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div> -->
+
+<div layout:fragment="content">
+	<div class="container" style="margin: 0 auto;">
+
+		<h1 th:if="${status == 'add'}" > Add Product</h1>
+    	<h1 th:if="${status == 'edit'}"> Edit Product</h1>
+    	
+		<br />
+		
+		<!-- Alert -->
+               	<div th:if="${msg != null}" class="alert alert-dismissible "
+					th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong><span th:text="${msg}"></span></strong>
+				</div>
+		<!-- end Alert -->
+		
+		<div class="col-md-6"  style="margin: 0 auto;">
+
+			<form action="#" th:action="@{/admin/products}" class="form-horizontal" method="post" enctype="multipart/form-data"
+				th:object="${productForm}">
+				<input type="hidden" th:field="*{id}" />
+				
+				<input type="hidden" name="status" th:value="${status}" />
+				
+				<div class="form-group">
+						<label class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" th:field="*{name}" class="form-control"
+								placeholder="Name" />
+							<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+						</div>
+				</div>
+				<!-- <div class="form-group">
+					<label class="col-sm-2 control-label">Category</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{category_id}" class="form-control" placeholder="Category" />
+						<div th:if="${#fields.hasErrors('category_id')}" th:errors="*{category_id}" ></div>
+					</div>
+				</div> -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{description}" class="form-control" placeholder="Description" />
+						<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Image</label>
+					<div class="col-sm-10">
+						<input type="hidden" th:field="*{image}" />
+						<input type="file" name="imageUrl" class="form-control" placeholder="Image" />
+						<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" ></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Unit_price</label>
+					<div class="col-sm-10">
+						<input type="number" step= any th:field="*{unitPrice}" class="form-control" placeholder="Unit_price" />
+						<div th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}" ></div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+				  	<label class="col-sm-2 control-label">Category</label>
+				 	 <div class="col-sm-10">
+				  		<select class="form-control" th:field="*{category.id}" id="sel1">
+				  			<option th:each="category1,iter : ${categories_menu}" th:value="${category1.id}" th:text="${category1.name}"></option>	
+				  					    
+				  		</select>
+				  	</div>
+				  	<div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" ></div>
+				</div>
+				
+				<div class="form-group">
+				  	<label class="col-sm-2 control-label">Deleted ?</label>
+				 	 <div class="col-sm-10">
+				  		<select class="form-control" th:field="*{isDeleted}" id="sel1">
+				  			<option value="0">NOT DELETED</option>	
+				  			<option value="1">DELETED</option>		   
+				  		</select>
+				  	</div>
+				  	<div th:errors="*{isDeleted}" ></div>
+				</div>
+					
+				
+				<!-- <div class="form-group">
+					<label class="col-sm-2 control-label">Sex</label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+						<input type="radio" 
+						        th:field="*{gender}" value="0"/>Male
+						</label>
+						<label class="radio-inline">
+						<input type="radio" 
+						        th:field="*{gender}" value="1"/>Female
+						</label>
+						
+					</div>
+				</div> -->
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2">
+						<input class="btn btn-primary" type="submit" value="Submit" />
+					</div>
+					<span class="col-sm-2 pull-right">
+						<a href="#" th:href="@{/admin/products/}"
+						data-original-title="Show products list" data-toggle="tooltip"
+						type="button" class="btn btn-primary">
+						<i class="glyphicon glyphicon-th-list"></i>
+						</a>
+					</span>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

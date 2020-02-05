@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/client/layout">
+<head>
+<meta charset="UTF-8">
+<title>Order</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div id="our_team"
+			class="pad-top-100 full-screen-mode parallax container">
+
+			<div class="col-lg-12">
+				<!-- breadcrumb-->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+						<li aria-current="page" class="breadcrumb-item active">Checkout</li>
+					</ol>
+				</nav>
+			</div>
+
+			<div class="container">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+						<!-- <div class="panel panel-info" th:if="${msg == null}"> -->
+						
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Order Items</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class=" col-md-9 col-lg-9 ">
+										<table class="table table-bordered table-hover display">
+											<thead>
+
+												<tr>
+													<th>No</th>
+													<th><a class="fa fa-fw fa-sort"><a class="sorted"
+															sd:pagination-sort="nama">Product</th>
+													<th><a class="fa fa-fw fa-sort"><a class="sorted"
+															sd:pagination-sort="nama">Unit Price</th>
+													<th><a class="fa fa-fw fa-sort"><a class="sorted"
+															sd:pagination-sort="nama">Quantity</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="orderItem,iter : ${cart.cartItems}">
+													<td th:text="${iter.count}">1</td>
+													<td th:text="${orderItem.product.name}"></td>
+													<td th:text="${orderItem.product.unitPrice}"></td>
+													<td th:text="${orderItem.quantity}"></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Order Detail</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class=" col-md-9 col-lg-9 ">
+										<table class="table table-order-information">
+											<tbody>
+												<tr>
+													<td>User Email</td>
+													<td th:text="${order.user.email}" />
+												</tr>
+												<tr>
+													<td>User Name</td>
+													<td th:text="${order.user.fullName}" /></td>
+												</tr>
+												<tr>
+													<td>Order Date</td>
+													<td th:text="${order.createOrderDate}" />
+												</tr>
+												<tr>
+													<td>Receiver Name</td>
+													<td th:text="${order.customerName}" />
+												</tr>
+												<tr>
+													<td>Receiver Phone</td>
+													<td th:text="${order.customerPhone}" />
+												</tr>
+												<tr>
+													<td>Receiver Address</td>
+													<td th:text="${order.customerAddress}" />
+												</tr>
+												<tr>
+													<td>Note</td>
+													<td th:text="${order.note}" />
+												</tr>
+												<tr>
+													<td>Amount Total</td>
+													<td th:text="'$ ' + ${order.total}" />
+												</tr>
+												<tr>
+													<td>Status</td>
+													<td th:text="${order.getStatusString()}" />
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="right">
+							<div>
+								<a href="#" th:href="@{/}" class="btn btn-primary"><i
+									class="fa fa-chevron-right"></i>Confirm</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
+

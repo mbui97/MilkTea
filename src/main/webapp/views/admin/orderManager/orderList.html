@@ -1,0 +1,130 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+<head>
+    <title>Order List</title>
+
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="pageTitle">
+    <h1>Order List</h1>
+    <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/admin/orders}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+					<!-- <a class="box-title btn btn-primary" th:href="@{/admin/orders/add}">Add Order</a> -->
+					
+                    <div class="box-tools">
+                        <form id="form" action="#" method="get" th:action="@{/admin/orders/search}">
+                            <div class="input-group input-group-sm" style="width: 250px;">
+                                <input type="text" name="keyword" class="form-control pull-right"
+                                       placeholder="Search..." th:if="${keyword} == null"/>
+                                <input type="text" name="keyword" class="form-control pull-right"
+                                       placeholder="Search..." th:if="${keyword} != null"
+                                       th:value="${keyword}"/>
+                                <!-- <input type="hidden" name="mode" id="mode"/> -->
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                	
+                	<!-- Alert -->
+                	<div th:if="${msg != null}" class="alert alert-dismissible "
+						th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong><span th:text="${msg}"></span></strong>
+					</div>
+					<!-- end Alert -->
+                	
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover display">
+                            <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">User Email</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">User Name</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Order Date</th>             
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Receiver Name</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Receiver Phone</th>
+								<th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Receiver Address</th>
+								<th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Note</th>
+								<th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Total Amount</th>
+								<th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Status</th>
+								
+                                <th>&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order,iter : ${orders}">
+                                <td th:text="${iter.count}">1</td>
+                                <td th:text="${order.user.email}"></td>
+                                <td th:text="${order.user.fullName}"></td>
+                                <td th:text="${order.createOrderDate}"></td>
+                                <td th:text="${order.customerName}"></td>
+                                <td th:text="${order.customerPhone}"></td>
+                                <td th:text="${order.customerAddress}"></td>
+                                <td th:text="${order.note}"></td>
+                                <td th:text="${order.total}"></td>
+                                <td th:text="${order.getStatusString()}"></td>
+
+                                <td>
+                                	<a href="#" class="btn btn-default" th:href="@{'/admin/orders/' + ${order.id}}"
+                                       title="Order Detail"><span class="glyphicon glyphicon-folder-open"></span></a>
+                                    <a href="#" class="btn btn-default" th:href="@{'/admin/orders/' + ${order.id} + '/edit'}"
+                                       title="Edit Order"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="#" class="btn btn-default" th:href="@{'/admin/orders/' + ${order.id} + '/delete'}"
+                                       title="Delete Order"><span class="glyphicon glyphicon-trash"
+                                       onclick="return confirm('Sure delete??')"></span></a>
+                                </td>
+                            </tr>
+
+                            <tr th:if="${#lists.isEmpty(orders)}">
+                                <td colspan="13" class="text-center">No Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+               <!--  <div th:if="${not #lists.isEmpty(orders)}">
+                    <div sd:pagination-summary="">info</div> -->
+
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <li class="disabled"><a href="#" aria-label="Previous"><span
+                                        aria-hidden="true">&laquo;</span></a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+       </div>
+</div>
+</body>
+</html>

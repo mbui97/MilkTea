@@ -1,0 +1,122 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/admin/layout">
+<head>
+    <title>Product List</title>
+
+    <style>
+        .noWrapColumn {
+            white-space: nowrap !important;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="pageTitle">
+    <h1>Product List</h1>
+    <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/admin/products}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"></li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+					<a class="box-title btn btn-primary" th:href="@{/admin/products/add}">Add Product</a>
+					
+                    <div class="box-tools">
+                        <form id="form" action="#" method="get" th:action="@{/admin/products/search}">
+                            <div class="input-group input-group-sm" style="width: 250px;">
+                                <input type="text" name="keyword" class="form-control pull-right"
+                                       placeholder="Search..." th:if="${keyword} == null"/>
+                                <input type="text" name="keyword" class="form-control pull-right"
+                                       placeholder="Search..." th:if="${keyword} != null"
+                                       th:value="${keyword}"/>
+                                <!-- <input type="hidden" name="mode" id="mode"/> -->
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                	
+                	<!-- Alert -->
+                	<div th:if="${msg != null}" class="alert alert-dismissible "
+						th:class="${css == 'error' ? 'alert-error' : 'alert-success'} + ' alert text-center'" role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong><span th:text="${msg}"></span></strong>
+					</div>
+					<!-- end Alert -->
+                	
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover display">
+                            <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Name</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Category</th> 
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="nama">Description</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Image</th>
+                                <th><a class="fa fa-fw fa-sort"><a class="sorted" sd:pagination-sort="alamat">Unit_price</th>
+
+                                <th>&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product,iter : ${products}">
+                                <td th:text="${iter.count}">1</td>
+                                <td th:text="${product.name}"></td>
+                                <td th:text="${product.category.name}"></td>  
+                                <td th:text="${product.description}"></td>
+                                <td><img id="product-img" src="#" th:src="@{'/assets/admin/img/products/' + ${product.image}}" alt=""></td>
+                                <td th:text="${product.unitPrice}"></td>
+
+                                <td>
+                                	<a href="#" class="btn btn-default" th:href="@{'/admin/products/' + ${product.id}}"
+                                       title="Product Detail"><span class="glyphicon glyphicon-folder-open"></span></a>
+                                    <a href="#" class="btn btn-default" th:href="@{'/admin/products/' + ${product.id} + '/edit'}"
+                                       title="Edit product"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="#" class="btn btn-default" th:href="@{'/admin/products/' + ${product.id} + '/delete'}"
+                                       title="Delete product"><span class="glyphicon glyphicon-trash"
+                                       onclick="return confirm('Sure delete??')"></span></a>
+                                </td>
+                            </tr>
+
+                            <tr th:if="${#lists.isEmpty(products)}">
+                                <td colspan="13" class="text-center">No Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+               <!--  <div th:if="${not #lists.isEmpty(products)}">
+                    <div sd:pagination-summary="">info</div> -->
+
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <li class="disabled"><a href="#" aria-label="Previous"><span
+                                        aria-hidden="true">&laquo;</span></a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+       </div>
+</div>
+</body>
+</html>

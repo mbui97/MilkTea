@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/client/layout">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<div layout:fragment="content">		
+	    <div id="banner" class="banner full-screen-mode parallax">
+	        <div class="container pr">
+	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                <div class="banner-static">
+	                    <div class="banner-text">
+	                        <div class="banner-cell">
+	                            <h1>TMH Group  <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Hieu:Thang:Minh" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+	                            <h2>Welcome to our website</h2>
+	                            <a href="#special-menu">
+	                                <div class="mouse"></div>
+	                                <div class="dit-line">Scroll down</div>
+	                            </a>
+	                        </div>
+	                        <!-- end banner-cell -->
+	                    </div>
+	                    <!-- end banner-text -->
+	                </div>
+	                <!-- end banner-static -->
+	            </div>
+	            <!-- end col -->
+	        </div>
+	        <!-- end container -->
+	    </div>
+	    <!-- end banner -->
+	
+	    <div id="special-menu" class="special-menu pad-top-100 parallax">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+	                        <h2 class="block-title color-white text-center"> Hot milk tea </h2>
+	                        <h5 class="title-caption text-center"> Hot</h5>
+	                    </div>
+	                    <div class="special-box">
+	                        <div id="owl-demo">
+	                            <div class="item item-type-zoom">
+	                                <a href="#" class="item-hover">
+	                                    <div class="item-info">
+	                                        <div class="headline">
+	                                            SALMON STEAK
+	                                            <div class="line"></div>
+	                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                                <div class="item-img">
+	                                    <img src="#" th:src="@{/assets/client/images/special-menu-1.jpg}" alt="sp-menu">
+	                                </div>
+	                            </div>
+	                            <div class="item item-type-zoom">
+	                                <a href="#" class="item-hover">
+	                                    <div class="item-info">
+	                                        <div class="headline">
+	                                            ITALIAN PIZZA
+	                                            <div class="line"></div>
+	                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                                <div class="item-img">
+	                                    <img src="#" th:src="@{/assets/client/images/special-menu-2.jpg}" alt="sp-menu">
+	                                </div>
+	                            </div>
+	                            <div class="item item-type-zoom">
+	                                <a href="#" class="item-hover">
+	                                    <div class="item-info">
+	                                        <div class="headline">
+	                                            VEG. ROLL
+	                                            <div class="line"></div>
+	                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                                <div class="item-img">
+	                                    <img src="#" th:src="@{/assets/client/images/special-menu-3.jpg}" alt="sp-menu">
+	                                </div>
+	                            </div>
+	                            <div class="item item-type-zoom">
+	                                <a href="#" class="item-hover">
+	                                    <div class="item-info">
+	                                        <div class="headline">
+	                                            SALMON STEAK
+	                                            <div class="line"></div>
+	                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                                <div class="item-img">
+	                                    <img src="#" th:src="@{/assets/client/images/special-menu-1.jpg}" alt="sp-menu">
+	                                </div>
+	                            </div>
+	                            <div class="item item-type-zoom">
+	                                <a href="#" class="item-hover">
+	                                    <div class="item-info">
+	                                        <div class="headline">
+	                                            VEG. ROLL
+	                                            <div class="line"></div>
+	                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                                <div class="item-img">
+	                                    <img src="#" th:src="@{/assets/client/images/special-menu-2.jpg}" alt="sp-menu">
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- end special-box -->
+	                </div>
+	                <!-- end col -->
+	            </div>
+	            <!-- end row -->
+	        </div>
+	        <!-- end container -->
+	    </div>
+	    <!-- end special-menu -->
+	
+	    <div id="menu" class="menu-main pad-top-100 pad-bottom-100">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+	                        <h2 class="block-title text-center">
+							Our Menu 	
+						</h2>
+	                        <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+	                    </div>
+	                    <div class="tab-menu">
+	                        <div class="slider slider-nav">
+	                            <div class="tab-title-menu" th:each="category,iter: ${categories}">
+	                                <h2 th:text="${category.name}"></h2>
+	                                <p> <i class="flaticon-canape"></i> </p>
+	                            </div>	              
+	                        </div>
+	                        <div class="slider slider-single">
+	                            <div th:each="category,iter: ${categories}">
+	                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " th:each="product,iter2 : ${category.products}">
+	                                    <div class="offer-item">
+	                                        <img src="#" th:src="@{/assets/client/images/menu-item-thumbnail-01.jpg}" alt="" class="img-responsive">
+	                                        <div>
+	                                            <h3><a href="#" th:href="@{'/products/' + ${product.id}}" th:text="${product.name}"></a></h3>
+	                                            <p th:text="${product.description}">
+	                                                
+	                                            </p>
+	                                        </div>
+	                                        <span class="offer-price" th:text="'$' + ${product.unitPrice}"></span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- end tab-menu -->
+	                </div>
+	                <!-- end col -->
+	            </div>
+	            <!-- end row -->
+	        </div>
+	        <!-- end container -->
+	    </div>
+	    <!-- end menu -->
+	
+	    <div id="about" class="about-main pad-top-100 pad-bottom-100">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+	                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+	                        <h2 class="block-title"> About Us </h2>
+	                        <h3>IT STARTED, QUITE SIMPLY, LIKE THIS...</h3>
+	                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia, nostrud exercitation ullamco. </p>
+	
+	                        <p> Aenean commodo ligula eget dolor aenean massa. Cum sociis nat penatibu set magnis dis parturient montes, nascetur ridiculus mus. quam felisorat, ultricies nec, Aenean commodo ligula eget dolor penatibu set magnis is parturient montes, nascetur ridiculus mus. quam felisorat, ultricies nec, pellentesque eu, pretium quis, sem. quat massa quis enim. Donec vitae sapien ut libero venenatis fauci Nullam quis ante. Etiam sit amet rci eget eros. </p>
+	
+	                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia, nostrud exercitation ullamco. </p>
+	                    </div>
+	                </div>
+	                <!-- end col -->
+	                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+	                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+	                        <div class="about-images">
+	                            <img class="about-main" src="#" th:src="@{/assets/client/images/about-main.jpg}" alt="About Main Image">
+	                            <img class="about-inset" src="#" th:src="@{/assets/client/images/about-inset.jpg}" alt="About Inset Image">
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- end col -->
+	            </div>
+	            <!-- end row -->
+	        </div>
+	        <!-- end container -->
+	    </div>
+	    <!-- end about -->
+	
+	    <div id="our_team" class="team-main pad-top-100 pad-bottom-100 parallax">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+	                        <h2 class="block-title text-center">
+							Our Team 	
+						</h2>
+	                        <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+	                    </div>
+	                    <div class="team-box">
+	
+	                        <div class="row">
+	                            <div class="col-md-4 col-sm-6">
+	                                <div class="sf-team">
+	                                    <div class="thumb">
+	                                        <a href="#"><img src="#" th:src="@{/assets/client/images/staff-01.jpg}" alt=""></a>
+	                                    </div>
+	                                    <div class="text-col">
+	                                        <h3>Ha Trung Hieu</h3>
+	                                        <p>Hieu Hang Hai</p>
+	                                        <ul class="team-social">
+	                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <!-- end col -->
+	                            <div class="col-md-4 col-sm-6">
+	                                <div class="sf-team">
+	                                    <div class="thumb">
+	                                        <a href="#"><img src="#" th:src="@{/assets/client/images/staff-02.jpg}" alt=""></a>
+	                                    </div>
+	                                    <div class="text-col">
+	                                        <h3>Pham Van Thang</h3>
+	                                        <p>Thang Them Thuong</p>
+	                                        <ul class="team-social">
+	                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <!-- end col -->
+	                            <div class="col-md-4 col-sm-6">
+	                                <div class="sf-team">
+	                                    <div class="thumb">
+	                                        <a href="#"><img src="#" th:src="@{/assets/client/images/staff-03.jpg}" alt=""></a>
+	                                    </div>
+	                                    <div class="text-col">
+	                                        <h3>Bui Hoang Minh</h3>
+	                                        <p>Minh Mo Mang</p>
+	                                        <ul class="team-social">
+	                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <!-- end col -->
+	                        </div>
+	                        <!-- end row -->
+	
+	                    </div>
+	                    <!-- end team-box -->
+	
+	                </div>
+	                <!-- end col -->
+	            </div>
+	            <!-- end row -->
+	        </div>
+	        <!-- end container -->
+	    </div>
+	    <!-- end team-main -->
+    </div>
+</body>
+</html>

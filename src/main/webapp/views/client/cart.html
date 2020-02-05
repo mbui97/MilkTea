@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="views/client/layout">
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div id="our_team"
+			class="pad-top-100 full-screen-mode parallax container">
+
+			<div class="col-lg-12">
+				<!-- breadcrumb-->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+						<li aria-current="page" class="breadcrumb-item active">Shopping
+							cart</li>
+					</ol>
+				</nav>
+			</div>
+
+			<div id="basket" class="col-lg-9">
+				<div class="box">
+					<form method="post" action="#" th:action="@{/update-cart}">
+						<h1>Shopping cart</h1>
+						<p class="text-muted" th:text="'You currently have ' + ${cart.cartItems.size()} + ' item(s) in your cart.'"></p>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Name</th>
+										<th>Quantity</th>
+										<th>Unit Price</th>
+										<th>Tax</th>
+										<th colspan="2">Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="cartItem,iter: ${cart.cartItems}">
+										<td><img th:src="@{'/assets/admin/img/products' + ${cartItem.product.image}}" alt=""></td>
+										<td th:text="${cartItem.product.name}"></td>
+										<td><input type="number" step="1" min="1" max=""
+											th:name="|cartItems[${iter.index}].quantity|"
+											th:value="${cartItem.quantity}"></td>
+										<td th:text="'$ ' + ${cartItem.product.unitPrice}"></td>
+										<td>$ 0.0</td>
+										<td th:text="'$ ' + ${cartItem.getAmount()}"></td>
+										<td><a href="#"
+											th:href="@{'/cart/' + ${cartItem.product.id} + '/remove'}"><i
+												class="fa fa-trash-o"></i></a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th colspan="5">Total</th>
+										<th colspan="2"
+											th:text="'$' + ${session.cart.getAmountTotal()}"></th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<!-- /.table-responsive-->
+						<div
+							class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+							<div class="left">
+								<a href="#" th:href="@{/}" class="btn btn-outline-secondary"><i
+									class="fa fa-chevron-left"></i> Continue shopping</a>
+							</div>
+							<div class="right">
+								<button type="submit" class="btn btn-outline-secondary">
+									<i class="fa fa-refresh"></i> Update cart
+								</button>
+								<div>
+									<a href="#" th:href="@{/create-order}" class="btn btn-primary"><i
+										class="fa fa-chevron-right"></i>Create Order</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
